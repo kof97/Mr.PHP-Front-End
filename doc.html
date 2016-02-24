@@ -82,7 +82,7 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
     |___ public                          项目静态文件，css、js、images 等文件
     |___ application ___                 用户开发目录
                        |___ conf         配置文件
-                       |___ ext          用户自定义扩展目录，扩展类命名统一为 类名.ext.php
+                       |___ ext          用户自定义扩展目录，扩展类命名统一为 类名.php
                        |___ controller   控制器，控制器名与类名相同
                        |___ model        模型，模型名称与类名相同
                        |___ view         视图
@@ -91,8 +91,8 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
 	<h1 id="standard">文件命名以及编码规范</h1>
 	<pre>
 <b id="standard1">用户自定义扩展</b>	
-扩展类命名统一为 类名.ext.php 
-<div class="code">	例：文件名 Page.ext.php
+扩展类命名统一为 类名.php 
+<div class="code">	例：文件名 Page.php
 	class Page
 	{
 
@@ -312,7 +312,28 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
 
 	<h1 id="ext">用户扩展</h1>
 	<pre>
-		
+当开发者需要自定义扩展时，可以将需要扩展的类放在 /application/ext/ 下，命名规则为 类名.php ，系统将会在调用该类时自动引入
+例：
+<div class="code">
+	// 扩展类， /application/ext/Page.php
+	class Page
+	{
+		public function test()
+		{
+			return "page";
+		}
+	}
+
+	// controller
+	public function testExt()
+	{
+		$page = new page();
+
+		var_dump($page->test());
+	}
+	
+	// result: string(4) "page"
+</div>	
 	</pre>
 
 	<h1 id="sys">系统常量</h1>

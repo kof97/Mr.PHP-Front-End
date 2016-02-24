@@ -22,12 +22,12 @@ if (!defined('ACC')) exit('this script access allowed');
  *	['charset'] The character set used in communicating with the database.
  */
 
-	$db["enable"] = true;
+	$db["enable"] = false;
 	$db["hostname"] = "localhost";
 	$db["port"] = "3306";
-	$db["username"] = "root";
-	$db["password"] = "kof97";
-	$db["database"] = "test";
+	$db["username"] = "";
+	$db["password"] = "";
+	$db["database"] = "";
 	$db["dbdriver"] = "pdo";
 	$db["charset"] = "utf8";
 

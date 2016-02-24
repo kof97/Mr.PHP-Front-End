@@ -1,0 +1,379 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		* { padding: 0; }
+		html { width: 100%; }
+		body { width: 1000px; margin: 30px auto; }
+		pre { font-size: 17px; line-height: 30px; word-wrap: break-word; text-align: left; }
+		pre li { margin: -12px 0; }	
+		b { font-size: 20px; }
+
+		.menu { position: fixed; top: 0; right: 10%; width: 200px; height: 100%; background: #F0F0F0; }
+		.menu li { margin: 10px 10px; font-size: 14px; }
+		.menu li a { text-decoration: none; color: #000;}
+		.menu li a:hover { color: #89DAF6;}
+		.menu li ul { margin: 0; }
+		.menu li ul li { margin-left: 40px; }
+
+		.main { width: 800px; float: left; }
+		.code { background: #F0F0F0; font-size: 13px; line-height: 20px;}
+	</style>
+</head>
+
+<body>
+<div class="menu">
+	<h3 style="text-align: center">目录</h3>
+	<li><a href="#welcome">欢迎使用 Mr. PHP</a></li>
+	<li><a href="#why">为什么要使用 Mr. PHP</a></li>
+	<li><a href="#install">安装说明</a></li>
+	<li><a href="#menu">目录说明</a></li>
+	<li><a href="#standard">文件命名以及编码规范</a>
+		<ul>
+			<li><a href="#standard1">用户自定义扩展</a></li>
+			<li><a href="#standard2">控制器</a></li>
+			<li><a href="#standard3">模型</a></li>
+			<li><a href="#standard4">编码规范</a></li>
+		</ul>
+	</li>
+	<li><a href="#conf">配置</a></li>
+	<li><a href="#database">数据库</a></li>
+	<li><a href="#controller">控制器 Controller</a>
+		<ul>
+			<li><a href="#controller1">uriSegment</a></li>
+			<li><a href="#controller2">siteUrl</a></li>
+			<li><a href="#controller3">重定向/跳转</a></li>
+			<li><a href="#controller4">请求 Model</a></li>
+			<li><a href="#controller5">加载 View</a></li>
+		</ul>
+	</li>
+	<li><a href="#model">模型 Model</a></li>
+	<li><a href="#view">视图 View</a></li>
+	<li><a href="#ext">用户扩展</a></li>
+	<li><a href="#sys">系统常量</a></li>
+	<li><a href="#end">写在最后</a></li>
+	
+</div>
+
+<div class="main">
+	<h1 id="welcome">欢迎使用 Mr. PHP</h1>
+	<pre>
+Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更快的开发，相对于CodeIgniter，Yii等已成熟的框架，我们还有许多不足，但我们会继续改进，不断完善
+	</pre>
+
+	<h1 id="why">为什么要使用 Mr. PHP</h1>
+	<pre>
+<li>小巧方便，整个框架只有不到100k的源码</li>
+<li>路径问题可以根据不同的环境自动匹配，不需要像 CodeIgniter 那样配置网站的根URL base_url() ，本地开发完成后直接上传至服务器，配置基本不变，直接运行即可，避免了各种各样的服务端路径问题。</li>
+<li>速度接近于原生php，封装的同时并没有影响太多php性能</li>
+<li>一个几乎零配置的框架</li>
+<li>封装的同时给开发者留了很大的开发空间，可以满足开发者的各种需求</li>
+	</pre>
+
+	<h1 id="install">安装说明</h1>
+	<pre>
+下载框架，解压至项目目录，直接访问项目即可,如需使用数据库，找到 application/conf/database.php ，填写配置文件即可
+	</pre>
+
+	<h1 id="menu">目录说明</h1>
+	<pre>
+/____                                    根目录
+    |___ core                            系统文件
+    |___ public                          项目静态文件，css、js、images 等文件
+    |___ application ___                 用户开发目录
+                       |___ conf         配置文件
+                       |___ ext          用户自定义扩展目录，扩展类命名统一为 类名.ext.php
+                       |___ controller   控制器，控制器名与类名相同
+                       |___ model        模型，模型名称与类名相同
+                       |___ view         视图
+	</pre>
+
+	<h1 id="standard">文件命名以及编码规范</h1>
+	<pre>
+<b id="standard1">用户自定义扩展</b>	
+扩展类命名统一为 类名.ext.php 
+<div class="code">	例：文件名 Page.ext.php
+	class Page
+	{
+
+	}
+</div>
+<b id="standard2">控制器</b>	
+控制器要继承 MrController 类，并且文件名与类名相同
+<div class="code">	例：文件名 Welcome.php
+	class Welcome extends MrController
+	{
+
+	}
+</div>
+<b id="standard3">模型</b>	
+控制器要继承 MrModel 类，并且文件名与类名相同
+<div class="code">	例：文件名 Search.php
+	class Search extends MrModel
+	{
+
+	}
+</div>
+<b id="standard4">编码规范</b>	
+类名大驼峰命名，方法名小驼峰命名
+其余代码均遵循 CodeSniffer 默认代码规范
+<div class="code">例：
+	class WelcomeClass
+	{
+		static private $_class;
+
+		/**
+		 * init.
+		 * 
+		 * @param string $class class name.
+		 * @param boolean $status status code.
+		 * @return mixed
+		 */
+		static public function initClass($class, $status)
+		{
+			$className = ucfirst($class);
+			if ($status) {
+				return new $className;
+			}
+
+			return false;
+		}
+
+	}
+</div>
+	</pre>
+
+	<h1 id="conf">配置</h1>
+	<pre>
+根目录下的 index.php 文件，里面定义了默认的系统常量，在这里可以配置：
+默认控制器，默认方法，是否启动调试，是否自启动session
+其他配置项请勿做修改
+<b>注：默认控制器如有多级目录请用 "/" 隔开，例："admin/welcome"，表示 controller/admin/ 下面的 welcome 控制器</b>
+	</pre>
+
+	<h1 id="database">数据库</h1>
+	<pre>
+在 /application/conf/database.php 里面进行数据库信息的配置，配置项如下：
+默认加载数据库，如果不需要数据库请将第一项改为 $db["enable"] = false;
+注：由于 php7 将移除 mysql 扩展，我们这里只支持 mysqli 和 pdo 两种方式，请根据需求自行选择
+<div class="code">
+	$db["enable"] = true;
+	$db["hostname"] = "localhost";
+	$db["username"] = "username";
+	$db["password"] = "password";
+	$db["database"] = "test";
+	$db["dbdriver"] = "mysqli";
+	$db["charset"] = "utf8";
+</div>
+在这里，我们没有对数据库进行过多的封装，支持原生 php 操作，通过 $this->db() 可以获取到数据库对象，然后自己进行具体操作，这样减轻了编码规则的条条框框，给大家更多的开发空间
+<div class="code">例：
+	$db = $this->db();
+	if ($db->query("CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
+	    printf("Table myCity successfully created.\n");
+	}
+</div>
+	</pre>
+
+	<h1 id="controller">控制器 Controller</h1>
+	<pre>
+<b>MVC框架中的C，controller，控制器负责控制业务逻辑，通过调度 model，来对数据逻辑进行处理，然后将数据发送至 view，并进行加载</b>
+控制器示例：
+<div class="code">
+	class Index extends MrController
+	{
+		public function welcome()
+		{
+			echo "Welcome to use Mr. PHP !";
+		}
+
+	}
+</div>
+<b id="controller1">获取 uri 的请求段</b>
+<div class="code">
+	<b>uriSegment($segment); </b>
+
+	例：
+	public function getSegment()
+	{
+		$seg = uriSegment(3);
+
+		echo $seg;
+	}
+	// 请求http://localhost/MrPHP/index.php/index/getSegment/5
+	// 输出为 "5";
+</div>
+<b id="controller2">由控制器获取完整 url 请求</b>
+<div class="code">
+	<b>siteUrl($controller = ""); </b>
+
+	例：
+	public function getUrl()
+	{
+		$url = siteUrl("index/welcome");
+
+		echo $url;
+	}
+	// 请求http://localhost/MrPHP/index.php/index/getUrl
+	// 输出为 "http://localhost/MrPHP/index.php/index/welcome";
+</div>
+<b id="controller3">重定向 / 跳转</b>
+<div class="code">
+	<b>$this->redirect($route); </b>
+
+	例：
+	public function re()
+	{
+		$this->redirect("index/welcome");
+	}
+</div>
+<b id="controller4">请求 Model</b>
+<div class="code">
+	<b>$this->model($modelName)->$method(); </b>
+
+	例：
+	Model 代码：
+	class Test extends MrModel
+	{
+		function get()
+		{
+			return 0;
+		}
+
+	}
+	
+	Controller 代码
+	public function testModel()
+	{
+		$test = $this->model("Test")->get();
+		
+		echo $test;
+	}
+	// 输出为 "0";
+</div>
+<b id="controller5">加载 View</b>
+<div class="code">
+	<b>$this->view($view, $data = array()); </b>
+
+	例：
+	public function testView()
+	{
+		$this->view("welcome.php");
+	}
+	// 多级目录请用 "/" 隔开，例 $this->view("admin/welcome.php");
+
+	// 传递数据
+	public function testView()
+	{
+		$data["test"] = "test";
+
+		$this->view("welcome.php", $data);
+	}
+</div>
+	</pre>
+
+	<h1 id="model">模型 Model</h1>
+	<pre>
+通过 $this->db(); 获取数据库对象，进行操作，例：
+<div class="code">
+	class Test extends MrModel
+	{
+		function testDb()
+		{
+			$db = $this->db();
+			if ($db->query("CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
+			    printf("Table myCity successfully created.\n");
+			}
+		}
+
+	}
+</div>
+	</pre>
+
+	<h1 id="view">视图 View</h1>
+	<pre>
+控制器加载时请写完整的视图url（相对于view目录），如：
+<div class="code">
+	$this->view("welcome.php");
+	// 多级目录请用 "/" 隔开，例 $this->view("admin/welcome.php");
+
+	/*-- 获取数据 --*/
+	// 控制器
+	public function testView()
+	{
+		$data["test"] = "test";
+
+		$this->view("welcome.php", $data);
+	}
+	// 视图中直接通过 $test 即可获得数据
+	// 直接以 $data 的键值对传递，键为变量名，值为变量值
+</div>
+视图静态文件（js、css、images等）请放在根目录下 public 目录下，可以通过设置网站的 base 标签来保证站点资源请求
+	</pre>
+
+	<h1 id="ext">用户扩展</h1>
+	<pre>
+		
+	</pre>
+
+	<h1 id="sys">系统常量</h1>
+	<pre>
+<div class="code">
+	// 开启调试 默认 true
+	DEBUG
+
+	// 自启动session 默认 true
+	AUTO_START_SESSION
+
+	// 默认 controller
+	DEFAULT_CONTROLLER
+
+	// 默认 method
+	DEFAULT_METHOD
+
+	// 目录分隔符
+	DS
+
+	// 框架目录
+	FRAME_PATH
+
+	// 核心目录
+	CORE_PATH
+
+	// 主目录
+	MAIN_PATH
+
+	// 配置文件目录
+	CONF_PATH
+
+	// 项目目录名
+	ITEM_NAME
+
+	// 项目uri地址
+	BASE_URI
+
+	// 用户自定义扩展目录
+	EXT_PATH
+
+</div>
+	</pre>
+
+	<h1 id="end">写在最后</h1>
+	<pre>
+持续更新中...
+获取地址：<a href="http://git.oschina.net/kofyu/MrPHP" target="_blank">http://git.oschina.net/kofyu/MrPHP</a>
+author: LYJ		email: 1048434786@qq.com
+	</pre>
+
+	<h1></h1>
+	<pre>
+
+	</pre>
+
+</div>
+</body>
+
+
+</html>
+
+
+

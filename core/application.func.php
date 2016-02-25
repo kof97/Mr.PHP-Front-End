@@ -14,16 +14,6 @@
 if (!defined('ACC')) exit('this script access allowed');
 
 /**
- * get the post data.
- * 
- * @return
- */
-function getPost()
-{
-	
-}
-
-/**
  * process route.
  *
  * @return string
@@ -47,6 +37,75 @@ function processRoute()
 	}
 
 	return $pathInfo;
+
+}
+
+/**
+ * get the post data.
+ * 
+ * @param string $key key
+ * @return mixed
+ */
+function post($key = "")
+{
+	if (trim($key) == "") {
+		$post = $_POST;
+	} else {
+		if (isset($_POST[$key])) {
+			$post = $_POST[$key];
+		} else {
+			$post = null;
+		}
+		
+	}
+
+	return $post;
+
+}
+
+/**
+ * get the request data.
+ * 
+ * @param string $key key
+ * @return mixed
+ */
+function request($key = "")
+{
+	if (trim($key) == "") {
+		$request = $_REQUEST;
+	} else {
+		if (array_key_exists($key, $_REQUEST)) {
+			$request = $_REQUEST[$key];
+		} else {
+			$request = null;
+		}
+		
+	}
+
+	return $request;
+
+}
+
+/**
+ * get the get data.
+ * 
+ * @param string $key key
+ * @return mixed
+ */
+function get($key = "")
+{
+	if (trim($key) == "") {
+		$get = $_GET;
+	} else {
+		if (isset($_GET[$key])) {
+			$get = $_GET[$key];
+		} else {
+			$get = null;
+		}
+		
+	}
+
+	return $get;
 
 }
 

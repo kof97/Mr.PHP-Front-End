@@ -296,6 +296,31 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
 
 	}
 </div>
+也可以这样使用：
+<div class="code">
+	class Test extends MrModel
+	{
+		public $db;
+
+		/**
+		 * get the database object.
+		 * 
+		 * @return void
+		 */
+		function __construct()
+		{
+			$this->db = $this->db();
+		}
+
+		function testDb()
+		{
+			if ($this->db->query("CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
+			    printf("Table myCity successfully created.\n");
+			}
+		}
+
+	}
+</div>
 	</pre>
 
 	<h1 id="view">视图 View</h1>

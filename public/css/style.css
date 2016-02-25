@@ -1,0 +1,198 @@
+body{
+	margin:0;
+	padding:0;
+	height: 100%;
+	font-family: 'Vollkorn', serif;
+	background:url(../images/banner.jpg) no-repeat;
+	background-size:100% 100%;
+ }
+body a{
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+h1,h2,h3,h4,h5,h6{
+	margin:0;			   
+}	
+p{
+	margin:0;
+}
+ul{
+	margin:0;
+	padding:0;
+}
+/*--header--*/
+.label-1 {
+background: #000;
+  width: 1140px;
+  height: 0;
+  display: block;
+}
+.label-3 {
+  border-top: 3px solid #000;
+   height: 6px;
+}
+.label-4 {
+  border-top: 1px solid #000;
+  height: 15px;
+}
+.label-5 {
+  border-top: 3px solid #000;
+   height: 6px;
+}
+.label-6 {
+  border-top: 1px solid #000;
+  height: 15px;
+}
+.label-7 {
+  border-top: 3px solid #000;
+   height: 6px;
+}
+.label-8 {
+  border-top: 1px solid #000;
+  height: 15px;
+}
+.top-menu {
+  margin: 30px 0 0 0;
+  border-top: 3px solid #000;
+  position: relative;
+  border-bottom: 3px solid#000;
+  height: 100px;
+}
+.logo {
+  position: relative;
+  bottom: 68px;
+  left: 44%;
+  width: 11%;
+}
+.nav {
+  list-style: none;
+  padding: 2em 0;
+  border-top: 1px solid#000;
+  margin: 3px 0;
+    border-bottom: 1px solid;
+}
+ul.nav li:nth-child(2) {
+  margin-right: 23em;
+}
+ul.nav li {
+  display: inline-block;
+}
+.nav li a {
+  display: block;
+  padding: 0px;
+  color: #000;
+  font-size: 1.5em;
+  margin: 0 60px;
+  font-weight: 400;
+}
+li.logo {
+  background: none;
+  border: none;
+}
+li.logo a {
+  font-size: 5em;
+  color: #17AED2;
+}
+div#banner-top {
+  text-align: center;
+      padding-top: 2em;
+}
+div#banner-top h1 {
+    font-size: 5.6em;
+    color:#000;
+    font-family: 'Abril Fatface', cursive;
+}
+div#banner-top h1 span.left-icon {
+  background: url(../images/left.png) no-repeat 0px 15px;
+  width: 204px;
+  height: 80px;
+  display: block;
+  float: left;
+  margin-left: 1.8em;
+}
+div#banner-top h1 span.right-icon {
+  background: url(../images/right.png) no-repeat 0px 15px;
+  width: 204px;
+  height: 80px;
+  display: block;
+  float: right;
+  margin-right: 1.8em;
+}
+div#banner-top h2 {
+  font-size: 3.6em;
+  padding: 0.5em 0;
+  width: 77%;
+  margin: 0 auto;
+   color:#000;
+}
+div#banner-top h2 span.left-icon {
+  background: url(../images/left.png) no-repeat 0px 10px;
+  width: 204px;
+  height: 50px;
+  display: block;
+  float: left;
+}
+div#banner-top h2 span.right-icon {
+  background: url(../images/right.png) no-repeat 0px 10px;
+  width: 204px;
+  height: 50px;
+  display: block;
+  float: right;
+}
+
+/*--about--*/
+.about {
+  text-align: center;
+      margin: 2em 0;
+}
+.about h3 {
+	font-family: 'Abril Fatface', cursive;
+  font-size: 3em;
+  padding: 0;
+  width: 80%;
+   margin: 0 auto 1em;
+  color: #000;
+}
+.about p {
+  font-size: 1.3em;
+}
+.about h2 { text-align: center; }
+.about h3 span.left-icon {
+  background: url(../images/left.png) no-repeat 0px 10px;
+  width: 204px;
+  height: 50px;
+  display: block;
+  float: left;
+}
+.about h3 span.right-icon {
+  background: url(../images/right.png) no-repeat 0px 10px;
+  width: 204px;
+  height: 50px;
+  display: block;
+  float: right;
+}
+.about-right {
+  text-align: left;
+}
+.about-right p {
+  padding: 10px 0;
+  line-height: 1.8em;
+  font-size: 1.3em;
+}
+.about-info {
+  margin: 1em 0 2em 0;
+}
+.about-info ul { margin-top: 10px; }
+.about-info li {
+	font-family: 'Vollkorn', serif;
+	line-height: 1.8em;
+  	font-size: 1.3em;
+}
+.about-info .me {
+	font-family: 'Microsoft YaHei';
+	font-size: 15px;
+}
+/*--/about--*/

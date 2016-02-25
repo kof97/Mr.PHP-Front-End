@@ -16,7 +16,7 @@
 		pre li { margin: -12px 0; }	
 		b { font-size: 20px; }
 
-		.menu { position: fixed; top: 0; right: 10%; width: 200px; height: 100%; background: #F0F0F0; }
+		.menu { position: fixed; top: 0; right: 10%; width: 200px; height: 100%; background: #F0F0F0; overflow: auto; }
 		.menu li { margin: 10px 10px; font-size: 14px; }
 		.menu li a { text-decoration: none; color: #000;}
 		.menu li a:hover { color: #89DAF6;}
@@ -47,8 +47,11 @@
 	<li><a href="#database">数据库</a></li>
 	<li><a href="#controller">控制器 Controller</a>
 		<ul>
-			<li><a href="#controller1">uriSegment</a></li>
-			<li><a href="#controller2">siteUrl</a></li>
+			<li><a href="#controller01">post()</a></li>
+			<li><a href="#controller02">get()</a></li>
+			<li><a href="#controller03">request()</a></li>
+			<li><a href="#controller1">uriSegment()</a></li>
+			<li><a href="#controller2">siteUrl()</a></li>
 			<li><a href="#controller3">重定向/跳转</a></li>
 			<li><a href="#controller4">请求 Model</a></li>
 			<li><a href="#controller5">加载 View</a></li>
@@ -194,6 +197,39 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
 		{
 			echo "Welcome to use Mr. PHP !";
 		}
+
+	}
+</div>
+<b id="controller01">POST</b>
+<div class="code">
+	<b>post($key = ""); </b>
+	// 返回对应的值，如果 $key 为空的话，以数组的形式返回所有的 post 数据
+	例：
+	public function getPost()
+	{
+		$post = post("name");
+
+	}
+</div>
+<b id="controller02">GET</b>
+<div class="code">
+	<b>get($key = ""); </b>
+	// 返回对应的 get 值，如果 $key 为空，以数组的形式返回所有 get 数据
+	例：
+	public function testGet()
+	{
+		$get = get("name");
+
+	}
+</div>
+<b id="controller03">REQUEST</b>
+<div class="code">
+	<b>request($key = ""); </b>
+	// 返回对应的 request 值，如果 $key 为空，以数组的形式返回所有 request 数据
+	例：
+	public function testRequest()
+	{
+		$request = request("name");
 
 	}
 </div>

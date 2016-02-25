@@ -24,34 +24,19 @@ ul{
 	padding:0;
 }
 /*--header--*/
-.label-1 {
+.label {
 background: #000;
   width: 1140px;
-  height: 0;
   display: block;
-}
-.label-3 {
-  border-top: 3px solid #000;
-   height: 6px;
-}
-.label-4 {
-  border-top: 1px solid #000;
-  height: 15px;
-}
-.label-5 {
-  border-top: 3px solid #000;
-   height: 6px;
-}
-.label-6 {
-  border-top: 1px solid #000;
-  height: 15px;
 }
 .label-7 {
   border-top: 3px solid #000;
-   height: 6px;
+  width: 1140px;
+  height: 6px;
 }
 .label-8 {
   border-top: 1px solid #000;
+  width: 1140px;
   height: 15px;
 }
 .top-menu {
@@ -146,7 +131,7 @@ div#banner-top h2 span.right-icon {
 /*--about--*/
 .about {
   text-align: center;
-      margin: 2em 0;
+      margin: 2em 0 0 0;
 }
 .about h3 {
 	font-family: 'Abril Fatface', cursive;
@@ -183,7 +168,7 @@ div#banner-top h2 span.right-icon {
   font-size: 1.3em;
 }
 .about-info {
-  margin: 1em 0 2em 0;
+  margin: 1em 0 0 0;
 }
 .about-info ul { margin-top: 10px; }
 .about-info li {
@@ -196,3 +181,5 @@ div#banner-top h2 span.right-icon {
 	font-size: 15px;
 }
 /*--/about--*/
+.foot { text-align: center; height: 90px; list-style-type: none; width: 1140px; margin: 0 auto; }
+.foot li { float: left; margin: 0 20px; }

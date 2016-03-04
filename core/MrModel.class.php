@@ -22,17 +22,34 @@ class MrModel
     }
 
     /**
-     * get the database object.
-     * 
+     * call db.
+     *
+     * @param string $method method.
+     * @param string $args args.
      * @return mixed
      */
-    public function db()
+    public function __call($method, $args)
     {
-        if (Mr::getClass("db")) {
-            return Mr::getClass("db");
-        } else {
-            showError("check your database.php to ensure that you make your db enable !");
+        if ($dbClass = Mr::getClass("dbClass")) {
+
+            if (method_exists($dbClass, $method)) {
+                return $dbClass->$method();
+            }
+
         }
+
+        showError("method dosn't exist ! Please check your conf/database.php !");
+    }
+
+    /**
+     * call db or conn.
+     *
+     * @param string $name method.
+     * @return method
+     */
+    public function __get($name)
+    {
+        return $this->$name();
         
     }
 

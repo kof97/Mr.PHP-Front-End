@@ -43,19 +43,26 @@ defined('EXT_PATH') or define('EXT_PATH', FRAME_PATH . 'application' . DS . 'ext
 
 require_once(CORE_PATH . 'Mr.class.php');
 
-function __autoload($className) 
+function loader($className) 
 {
-	$fileName = CORE_PATH . $className . ".class.php";
-	
-	if (!file_exists($fileName)) {
-		$fileName = EXT_PATH . $className . ".php";
-		if (!file_exists($fileName)) {
-			return false;
-		}
-	} 
+    $fileName = CORE_PATH . $className . ".class.php";
+    
+    if (!file_exists($fileName)) {
 
-	include_once($fileName);
+        $fileName = EXT_PATH . $className . ".php";
+        if (!file_exists($fileName)) {
+
+        	$fileName = CORE_PATH . "db" . DS . $className . ".class.php";
+            if (!file_exists($fileName)) {
+            	return false;
+            }
+        }
+    } 
+
+    include_once($fileName);
 
 }
+
+spl_autoload_register("loader");
 
 Mr::init();

@@ -15,25 +15,25 @@ if (!defined('ACC')) exit('this script access allowed');
 
 class MrRun
 {
-	/**
+    /**
      * run application.
      *
      * @return void
      */
-	static public function run()
-	{
-		$app = self::_createApplication('MrApplication');
+    static public function run()
+    {
+        $app = self::_createApplication('MrApplication');
         $app->start();
         
-	}
+    }
 
-	/**
+    /**
      * run application.
      *
      * @param string $class className.
      * @return object
      */
-	static private function _createApplication($class)
+    static private function _createApplication($class)
     {
         $applicationKey = strtolower($class);
 

@@ -16,24 +16,24 @@ if (!defined('ACC')) exit('this script access allowed');
 class MrModel
 {
 
-	public function __construct()
-	{
+    public function __construct()
+    {
 
-	}
+    }
 
-	/**
-	 * get the database object.
-	 * 
-	 * @return mixed
-	 */
-	public function db()
-	{
-		if (Mr::getClass("db")) {
-			return Mr::getClass("db");
-		} else {
-			showError("check your database.php to ensure that you make your db enable !");
-		}
-		
-	}
+    /**
+     * get the database object.
+     * 
+     * @return mixed
+     */
+    public function db()
+    {
+        if (Mr::getClass("db")) {
+            return Mr::getClass("db");
+        } else {
+            showError("check your database.php to ensure that you make your db enable !");
+        }
+        
+    }
 
 }

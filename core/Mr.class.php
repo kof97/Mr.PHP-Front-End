@@ -15,25 +15,25 @@ if (!defined('ACC')) exit('this script access allowed');
 
 class Mr
 {
-	// application list
-	static private $_a;
+    // application list
+    static private $_a;
 	
-	// class list
-	static private $_class;
+    // class list
+    static private $_class;
 
-	/**
+    /**
      * init application.
      *
      * @return mixed
      */
-	static public function init()
-	{
-		if (!DEBUG) {
-			error_reporting(0);
-		}
+    static public function init()
+    {
+        if (!DEBUG) {
+            error_reporting(0);
+        }
         
         // load application function
-		Mr::import(CORE_PATH . 'application.func.php');
+        Mr::import(CORE_PATH . 'application.func.php');
 
         // load database
         Mr::import(CORE_PATH . "db" . DS . "db.php");
@@ -42,11 +42,11 @@ class Mr
             Mr::setClass("db", $db);
         }    
 
-		MrRun::run();
+        MrRun::run();
 
-	}
+    }
 
-	/**
+    /**
      * import file or path.
      *
      * @param string  $path 	 file path.
@@ -55,23 +55,23 @@ class Mr
      */
     static public function import($path, $testExist = true)
     {
-    	static $succeedImportFile = array();
+        static $succeedImportFile = array();
 
-    	if (is_file($path)) {
-    		$status = include_once($path);
+        if (is_file($path)) {
+            $status = include_once($path);
 
-    		$fileName = substr($path, (strrpos($path, DS) + 1));
-    		$succeedImportFile[$fileName] = (boolean)$status;
+            $fileName = substr($path, (strrpos($path, DS) + 1));
+            $succeedImportFile[$fileName] = (boolean)$status;
     		
-    		return $succeedImportFile[$fileName];
-    	} else {
-    		if ($testExist) {
-    			//throw new MrException('import not found file :' . $path);
-    			showError("couldn't find the file which is imported !");
-    		} else {
-    			return array();
-    		}
-    	}
+            return $succeedImportFile[$fileName];
+        } else {
+            if ($testExist) {
+                //throw new MrException('import not found file :' . $path);
+                showError("couldn't find the file which is imported !");
+            } else {
+                return array();
+            }
+        }
 
     }
 
@@ -89,7 +89,7 @@ class Mr
 
     }
 
-	/**
+    /**
      * get application.
      *
      * @param string $key application key.
@@ -116,7 +116,7 @@ class Mr
 
     }
 
-	/**
+    /**
      * get class.
      *
      * @param string $key class key.

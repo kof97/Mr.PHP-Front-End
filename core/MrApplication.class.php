@@ -15,7 +15,7 @@ if (!defined('ACC')) exit('this script access allowed');
 
 class MrApplication
 {
-	/**
+    /**
      * start function.
      *
      * @return void
@@ -63,40 +63,41 @@ class MrApplication
             $classPath .= DS . $value;
             $fileName = MAIN_PATH . "controller" . $classPath . ".php";
 
-            if (file_exists($fileName)) {
-                importClass($fileName);
-                // get the class name
-                if (strpos($value, DS)) {
-                    $value = substr($value, strrpos($value, DS) + 1);
-                }
-
-                $class = ucfirst($value);
-                if (class_exists($class)) {
-                    $classKey = $class;
-
-                    if (!Mr::getClass($classKey)) {
-                        Mr::setClass($classKey, new $class);
-                    }
-
-                    // get the method and judge whether it is out of the range, default
-                    if (($key + 1) >= count($route)) {
-                        $method = DEFAULT_METHOD;
-                    } else {
-                        if (preg_match("/^[a-zA-Z]/", $route[$key + 1])) {
-                            $method = $route[$key + 1];
-                        } else {
-                            $method = DEFAULT_METHOD;
-                        }
-                    }
-
-                    // whether the method exists
-                    if (method_exists(Mr::getClass($classKey), $method)) {
-                        return Mr::getClass($classKey)->$method();
-                    }  
-                }
-            } else {
+            if (!file_exists($fileName)) {
                 continue;
             }
+            
+            importClass($fileName);
+            // get the class name
+            if (strpos($value, DS)) {
+                $value = substr($value, strrpos($value, DS) + 1);
+            }
+
+            $class = ucfirst($value);
+            if (class_exists($class)) {
+                $classKey = $class;
+
+                if (!Mr::getClass($classKey)) {
+                    Mr::setClass($classKey, new $class);
+                }
+
+                // get the method and judge whether it is out of the range, default
+                if (($key + 1) >= count($route)) {
+                    $method = DEFAULT_METHOD;
+                } else {
+                    if (preg_match("/^[a-zA-Z]/", $route[$key + 1])) {
+                        $method = $route[$key + 1];
+                    } else {
+                        $method = DEFAULT_METHOD;
+                    }
+                }
+
+                // whether the method exists
+                if (method_exists(Mr::getClass($classKey), $method)) {
+                    return Mr::getClass($classKey)->$method();
+                }  
+            }
+          
         }
 
         showError("controller or method couldn't find, please check your request uri !");

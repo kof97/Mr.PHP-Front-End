@@ -58,13 +58,20 @@ class MrApplication
         }
 
         // get the class that can be used
-        $classPath = "";
+        $classPathU = "";
+        $classPathL = "";
         foreach ($filterRoute as $key => $value) {
-            $classPath .= DS . $value;
-            $fileName = MAIN_PATH . "controller" . $classPath . ".php";
+            $classPathL .= DS . lcfirst($value);
+            $fileName = MAIN_PATH . "controller" . $classPathL . ".php";
 
             if (!file_exists($fileName)) {
-                continue;
+
+                $classPathU .= DS . ucfirst($value);
+                $fileName = MAIN_PATH . "controller" . $classPathU . ".php";
+                
+                if (!file_exists($fileName)) {
+                    continue;
+                }
             }
             
             importClass($fileName);

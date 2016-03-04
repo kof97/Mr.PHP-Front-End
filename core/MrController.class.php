@@ -37,13 +37,21 @@ class MrController
         }
 
         // get the model that can be used
-        $modelPath = "";
+        $modelPathU = "";
+        $modelPathL = "";
         foreach ($filterModel as $key => $value) {
-            $modelPath .= DS . $value;
-            $fileName = MAIN_PATH . "model" . $modelPath . ".php";
+            $modelPathL .= DS . lcfirst($value);
+            $fileName = MAIN_PATH . "model" . $modelPathL . ".php";
 
             if (!file_exists($fileName)) {
-                continue;
+
+                $modelPathU .= DS . ucfirst($value);
+                $fileName = MAIN_PATH . "model" . $modelPathU . ".php";
+                
+                if (!file_exists($fileName)) {
+                    continue;
+                }
+                
             }
 
             importClass($fileName);

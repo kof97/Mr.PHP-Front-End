@@ -49,12 +49,15 @@ function loader($className)
     
     if (!file_exists($fileName)) {
 
-        $fileName = EXT_PATH . $className . ".php";
         if (!file_exists($fileName)) {
 
-        	$fileName = CORE_PATH . "db" . DS . $className . ".class.php";
+            $fileName = EXT_PATH . ucfirst($className) . ".php";
             if (!file_exists($fileName)) {
-            	return false;
+
+                $fileName = CORE_PATH . "db" . DS . $className . ".class.php";
+                if (!file_exists($fileName)) {
+                    return false;
+                }
             }
         }
     } 

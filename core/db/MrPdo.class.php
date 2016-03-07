@@ -35,6 +35,10 @@ class MrPdo extends Database
             showError("please check your sql string !");
         }
 
+        if (strpos(strtolower($sql), "select") === false) {
+            return true;
+        }
+        
         switch ($mode) {
             case 'array': 
                 $res = $query->fetch(PDO::FETCH_ASSOC); break;

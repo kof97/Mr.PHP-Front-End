@@ -30,8 +30,13 @@ class MrMysqli extends Database
         }
 
         $query = $this->db()->query($sql);
+
         if (!$query) {
             showError("please check your sql string !");
+        }
+
+        if (strpos(strtolower($sql), "select") === false) {
+            return true;
         }
 
         switch ($mode) {

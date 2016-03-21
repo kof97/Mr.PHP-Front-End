@@ -36,7 +36,7 @@ class MrPdo extends Database
         }
 
         if (strpos(strtolower($sql), "select") === false) {
-            return true;
+            return $query;
         }
         
         switch ($mode) {

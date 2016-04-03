@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="renderer" content="webkit">
     <meta charset="utf-8">
     <style>
         * { padding: 0; }
@@ -11,9 +12,14 @@
             -o-user-select: none;
             user-select: none;
         }
-        body { width: 1000px; margin: 30px auto; }
-        pre { width: 800px; font-size: 17px; line-height: 30px; word-wrap: break-word; text-align: left; }
+        body { width: 1000px; margin: 30px auto; word-wrap: break-word;}
+
+        span { width: 100%; font-size: 17px; line-height: 30px; word-wrap: break-word; text-align: left; display: inline;}
+        span li { margin: -12px 0; padding: 5px 0;} 
+
+        pre { width: 100%; font-size: 17px; line-height: 30px; word-wrap: break-word; text-align: left; display: inline;}
         pre li { margin: -12px 0; } 
+
         b { font-size: 20px; }
 
         .menu { position: fixed; top: 0; right: 10%; width: 200px; height: 100%; background: #F0F0F0; overflow: auto; }
@@ -82,23 +88,23 @@
 <div class="main" id="welcome">
     <h3><a href="<?php echo BASE_URI; ?>">回到首页</a></h3>
     <h1>欢迎使用 Mr. PHP</h1>
-    <pre>
+    <span>
 Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更快的开发，相对于CodeIgniter，Yii等已成熟的框架，我们还有许多不足，但我们会继续改进，不断完善
-    </pre>
+    </span>
 
     <h1 id="why">为什么要使用 Mr. PHP</h1>
-    <pre>
+    <span>
 <li>小巧方便，整个框架只有不到100k的源码</li>
 <li>路径问题可以根据不同的环境自动匹配，不需要像 CodeIgniter 那样配置网站的根URL base_url() ，本地开发完成后直接上传至服务器，配置基本不变，直接运行即可，避免了各种各样的服务端路径问题。</li>
 <li>速度接近于原生php，封装的同时并没有影响太多php性能</li>
 <li>一个几乎零配置的框架</li>
 <li>封装的同时给开发者留了很大的开发空间，可以满足开发者的各种需求</li>
-    </pre>
+    </span>
 
     <h1 id="install">安装说明</h1>
-    <pre>
+    <span>
 下载框架，解压至项目目录，直接访问项目即可,如需使用数据库，找到 application/conf/database.php ，填写配置文件即可
-    </pre>
+    </span>
 
     <h1 id="menu">目录说明</h1>
     <pre>
@@ -169,19 +175,19 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
     </pre>
 
     <h1 id="conf">配置</h1>
-    <pre>
+    <span>
 根目录下的 index.php 文件，里面定义了默认的系统常量，在这里可以配置：
 默认控制器，默认方法，是否启动调试，是否自启动session
-其他配置项请勿做修改
+其他配置项请勿做修改<br />
 <b>注：默认控制器如有多级目录请用 "/" 隔开，例："admin/welcome"，表示 controller/admin/ 下面的 welcome 控制器</b>
-    </pre>
+    </span>
 
     <h1 id="database">数据库</h1>
-    <pre>
-在 /application/conf/database.php 里面进行数据库信息的配置，配置项如下：
-默认加载数据库，如果不需要数据库请将第一项改为 $db["enable"] = false;
+    <span>
+在 /application/conf/database.php 里面进行数据库信息的配置，配置项如下：<br />
+默认加载数据库，如果不需要数据库请将第一项改为 $db["enable"] = false;<br />
 注：由于 php7 将移除 mysql 扩展，我们这里只支持 mysqli 和 pdo 两种方式，请根据需求自行选择
-<div class="code">
+<pre><div class="code">
     $db["enable"] = true;
     $db["hostname"] = "localhost";
     $db["port"] = "3306";
@@ -191,9 +197,10 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
     $db["dbdriver"] = "mysqli";
     $db["charset"] = "utf8";
 </div>
-<b id="database1">原生数据库操作</b>
+</pre>
+<b id="database1">原生数据库操作</b><br />
 在这里，我们没有对数据库进行过多的封装，支持原生 php 操作，通过 $this->db() 或是 $this->db 可以获取到数据库对象，然后自己进行具体操作，这样减轻了编码规则的条条框框，给大家更多的开发空间
-<div class="code">例：
+<pre><div class="code">例：
     $db = $this->db();
     if ($db->query("CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
         printf("Table myCity successfully created.\n");
@@ -203,10 +210,12 @@ Mr. PHP 是一个用于php网站开发的框架，目标是让你可以进行更
         printf("Table myCity successfully created.\n");
     }
 </div>
-<b id="database2">MySqli</b>
-通过 $this->conn 或是 $this->conn() 获取到封装的 mysqli 对象。
+</pre>
+<b id="database2">MySqli</b><br /> 
+通过 $this->conn 或是 $this->conn() 获取到封装的 mysqli 对象。<br />
 
-<b id="database21">query($sql, $mode = "arrayAll") 执行单条查询</b> 
+<b id="database21">query($sql, $mode = "arrayAll") 执行单条查询</b> <br />
+<pre>
 $sql 是拼接好的待执行语句
 $mode 是执行模式，缺省值为"arrayAll"，现在提供四种查询模式：
     array : 以数组的形式返回第一条查询结果
@@ -222,19 +231,22 @@ $mode 是执行模式，缺省值为"arrayAll"，现在提供四种查询模式�
     }
     // 输出为： 4
 </div>
-<b id="database3">PDO</b>
+</pre>
+<b id="database3">PDO</b><br />
 通过 $this->conn 或是 $this->conn() 获取到封装的 PDO 对象。
-
+<pre>
 <b id="database31">query($sql, $mode = "arrayAll") 执行单条查询</b>
 <div class="code">例：
     同 mysqli
 
 </div>
-    </pre>
+</pre>
+    </span>
 
     <h1 id="controller">控制器 Controller</h1>
-    <pre>
-<b>MVC框架中的C，controller，控制器负责控制业务逻辑，通过调度 model，来对数据逻辑进行处理，然后将数据发送至 view，并进行加载</b>
+    
+<b>MVC框架中的C，controller，控制器负责控制业务逻辑，通过调度 model，来对数据逻辑进行处理，然后将数据发送至 view，并进行加载</b><br />
+<pre>
 控制器示例：
 <div class="code">
     class Index extends MrController
@@ -360,7 +372,7 @@ $mode 是执行模式，缺省值为"arrayAll"，现在提供四种查询模式�
         $this->view("welcome.php", $data);
     }
 </div>
-    </pre>
+</pre>
 
     <h1 id="model">模型 Model</h1>
     <pre>
@@ -423,12 +435,14 @@ $mode 是执行模式，缺省值为"arrayAll"，现在提供四种查询模式�
     // 视图中直接通过 $test 即可获得数据
     // 直接以 $data 的键值对传递，键为变量名，值为变量值
 </div>
+</pre>
 视图静态文件（js、css、images等）请放在根目录下 public 目录下，可以通过设置网站的 base 标签来保证站点资源请求
-    </pre>
+    
 
     <h1 id="ext">用户扩展</h1>
-    <pre>
+   
 当开发者需要自定义扩展时，可以将需要扩展的类放在 /application/ext/ 下，命名规则为 类名.php ，系统将会在调用该类时自动引入
+<pre>
 例：
 <div class="code">
     // 扩展类， /application/ext/Page.php
